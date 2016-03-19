@@ -1,0 +1,6 @@
+services:
+    smarttvguide.service.wettercomservice:
+        class: AppBundle\Service\WetterComService
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@service_container'
