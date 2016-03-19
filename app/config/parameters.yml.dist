@@ -17,3 +17,7 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    wetter_com_username: 7hack
+    wetter_com_password: hacktheweather
+    wetter_com_base_url: http://rwds2.wetter.com

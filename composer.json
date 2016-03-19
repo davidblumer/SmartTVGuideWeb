@@ -22,7 +22,10 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "friendsofsymfony/rest-bundle": "^1.7",
-        "dunglas/api-bundle": "dev-bugfix/embedded"
+        "dunglas/api-bundle": "dev-bugfix/embedded",
+        "nelmio/api-doc-bundle": "^2.11",
+        "sensio/buzz-bundle":"dev-master"
+        
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
