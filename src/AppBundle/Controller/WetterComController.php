@@ -20,7 +20,7 @@ class WetterComController extends FOSRestController
      *  section="Wetter",
      *  description="Returns weather data from weather.com by a string with name of city or postalcode",
      *  parameters={
-     *      {"name"="search", "dataType"="string", "required"=true, "description"="A search term for the required city. (e.q.: postal code or name)"}
+     *      {"name"="search", "dataType"="string", "required"=true, "description"="A search term for the required city. (e.g.: postal code or name)"}
      *  }
      * )
      */
