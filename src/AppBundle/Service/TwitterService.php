@@ -4,13 +4,14 @@ namespace AppBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use phpDocumentor\Reflection\Exception;
+use Symfony\Component\DependencyInjection\Container;
 
 class TwitterService
 {
     /** @var EntityManager $entityManager */
     protected $entityManager;
 
-    /** @var $container */
+    /** @var Container $container */
     protected $container;
 
     public function __construct($entityManager, $container)
@@ -21,19 +22,25 @@ class TwitterService
 
     public function getTweets($actors)
     {
-        $buzz = $this->container->get('buzz');
+        $twitter = $this->container->get('endroid.twitter');
+
+        $tweets = array();
 
         foreach($actors as $actor) {
-            $parameters = 'q='.str_replace(' ', '%20', $actor);
+            $actorFullName = $actor['givenName'] . ' ' . $actor['lastName'];
+            $response = $twitter->query('users/search', 'GET', 'json', array('q' => $actorFullName, 'count' => 1));
+            $actorTwitterSite = json_decode($response->getContent(), true);
+
+            if(isset($actorTwitterSite[0]) && isset($actorTwitterSite[0]['id']))
+            {
+                $actorId = $actorTwitterSite[0]['id'];
+
+                $response = $twitter->query('statuses/user_timeline', 'GET', 'json', array('user_id' => $actorId, 'count' => 3));
+                $actorTweets = json_decode($response->getContent(), true);
+                $tweets[][$actorFullName] = $actorTweets;
+            }
         }
 
-        $headers =  ['Authorization' => 'OAuth oauth_consumer_key="2PA8v8O5ryUG996R7lonVbSqR", oauth_nonce="781930a1a0ea96e5c3a6e97f2d7349a9", oauth_signature="hywFHB9Nwy5sSmjBLPv0IRdpN0w%3D", oauth_signature_method="HMAC-SHA1", oauth_timestamp="1458440179", oauth_token="128516180-SoJUHuAkceMNoVLeRPhvNdV20G3xrsoaleBHHlnJ", oauth_version="1.0"'];
-
-        $response = $buzz->get('https://api.twitter.com/1.1/users/search.json?'.$parameters, $headers)->getContent();
-
-        dump($response);
-        die();
-
-        return $response;
+        return $tweets;
     }
 }

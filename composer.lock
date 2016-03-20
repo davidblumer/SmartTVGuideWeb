@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "da005bde804153423c765a8db8c17445",
-    "content-hash": "5810bb6296d5fb7ef9c34edadcd49e19",
+    "hash": "304f79454aa5cc8c40e8c31117f13f67",
+    "content-hash": "a05ace37ffdb4c7f384bf39f1d6ffc0a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -907,6 +907,115 @@
                 "validator"
             ],
             "time": "2015-12-29 08:21:00"
+        },
+        {
+            "name": "endroid/twitter",
+            "version": "1.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/endroid/Twitter.git",
+                "reference": "888840b157de74329527ef6d4a85896471b83229"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/endroid/Twitter/zipball/888840b157de74329527ef6d4a85896471b83229",
+                "reference": "888840b157de74329527ef6d4a85896471b83229",
+                "shasum": ""
+            },
+            "require": {
+                "kriswallsmith/buzz": "~0.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "~1.0",
+                "phpunit/phpunit": "~4.0",
+                "symfony/var-dumper": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Endroid\\Twitter\\": [
+                        "src/",
+                        "tests/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen van den Enden",
+                    "email": "info@endroid.nl",
+                    "homepage": "http://endroid.nl/"
+                }
+            ],
+            "description": "Endroid Twitter",
+            "homepage": "https://github.com/endroid/Twitter",
+            "keywords": [
+                "endroid",
+                "twitter"
+            ],
+            "time": "2015-07-04 19:52:47"
+        },
+        {
+            "name": "endroid/twitter-bundle",
+            "version": "1.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/endroid/EndroidTwitterBundle.git",
+                "reference": "927e61edfdfda97ac688803665f0c6c382ed4828"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/endroid/EndroidTwitterBundle/zipball/927e61edfdfda97ac688803665f0c6c382ed4828",
+                "reference": "927e61edfdfda97ac688803665f0c6c382ed4828",
+                "shasum": ""
+            },
+            "require": {
+                "endroid/twitter": "~1.0",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Endroid\\Bundle\\TwitterBundle\\": [
+                        "src/",
+                        "tests/"
+                    ]
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jeroen van den Enden",
+                    "email": "info@endroid.nl",
+                    "homepage": "http://endroid.nl/"
+                }
+            ],
+            "description": "Endroid Twitter Bundle for Symfony",
+            "homepage": "https://github.com/endroid/EndroidTwitterBundle",
+            "keywords": [
+                "bundle",
+                "endroid",
+                "symfony",
+                "twitter"
+            ],
+            "time": "2016-01-01 19:40:29"
         },
         {
             "name": "friendsofsymfony/rest-bundle",

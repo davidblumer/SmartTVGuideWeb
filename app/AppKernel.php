@@ -20,6 +20,7 @@ class AppKernel extends Kernel
             new Dunglas\ApiBundle\DunglasApiBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
             new Sensio\Bundle\BuzzBundle\SensioBuzzBundle(),
+            new Endroid\Bundle\TwitterBundle\EndroidTwitterBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

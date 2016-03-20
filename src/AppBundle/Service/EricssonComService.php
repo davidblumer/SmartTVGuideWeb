@@ -21,7 +21,8 @@ class EricssonComService
 
     public function getCurrentActors($show)
     {
-        return $this->getCurrentProgram($show, $searchKey = ['contributions']);
+
+        return $this->getCurrentProgram($show, $searchKey = ['contributions'])['contributions'];
     }
 
     public function getCurrentProgram($show, $searchKeys = ['searchableTitles', 'searchableTextItems', 'contributions'])

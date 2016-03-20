@@ -33,6 +33,13 @@ class TwitterController extends FOSRestController
 
         $data = $service->getTweets($actors);
 
-        return new Response(json_encode($data), 200, array('Content-Type' => 'application/json'));
+        $response = new Response(json_encode(array()), 404, array('Content-Type' => 'application/json'));
+
+        if($data)
+        {
+            $response = new Response(json_encode($data), 200, array('Content-Type' => 'application/json'));
+        }
+
+        return $response;
     }
 }
