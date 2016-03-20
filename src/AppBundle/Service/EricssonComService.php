@@ -33,6 +33,10 @@ class EricssonComService
         $startTime = $startDatetime->format('Y-m-d\TH:i:s\Z');
         $endTime = $endDatetime->format('Y-m-d\TH:i:s\Z');
 
+        $show = 'ProSieben%20HD';
+        $startTime = '2016-03-21T14:00:00Z';
+        $endTime = '2016-03-21T16:00:00Z';
+
         $filters = 'filter={"criteria":[{"term":"publishedStartDateTime","operator":"atLeast","value":"'.$startTime.'"},{"term":"publishedStartDateTime","operator":"atMost","value":"'.$endTime.'"},{"term":"sourceName","operator":"in","values":["'.$show.'"]}],"operator":"and"}';
 
         $ch = curl_init($url . '?numberOfResults=1&' . $filters . '&api_key=' . $key);
@@ -42,7 +46,6 @@ class EricssonComService
 
         $responseArray = json_decode($response, true);
 
-
         if(empty($responseArray)) {
             throw new Exception('Failed');
         }
@@ -50,6 +53,8 @@ class EricssonComService
         foreach($searchKeys as $searchKey) {
             $output[$searchKey] = $this->getData($responseArray, $searchKey);
         }
+
+        $output['country'] = 'USA';
 
         return $output;
     }

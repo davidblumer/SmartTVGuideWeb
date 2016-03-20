@@ -57,9 +57,9 @@ class WetterComService
 
     public function getCityCode($search)
     {
-        $preparedSearch = strtolower($search);
+        $preparedSearch = strtolower(urlencode($search));
 
-        $url = $this->baseUrl . "/location/index/search/". $preparedSearch . "/user/" . $this->username . "/cs/" . $this->generateCheckSum([$search]);
+        $url = $this->baseUrl . "/location/index/search/". $preparedSearch . "/user/" . $this->username . "/cs/" . $this->generateCheckSum([$preparedSearch]);
         $buzz = $this->container->get('buzz');
 
         $response = $buzz->get($url);

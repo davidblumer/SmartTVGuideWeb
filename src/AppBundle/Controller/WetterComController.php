@@ -28,7 +28,10 @@ class WetterComController extends FOSRestController
     {
         $weatherService = $this->get('smarttvguide.service.wettercomservice');
 
+
         $weather = $weatherService->getWeather($search);
+
+
 
         $response = new Response('{}', 404, array('Content-Type' => 'application/json'));
 
