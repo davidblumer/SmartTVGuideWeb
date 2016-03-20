@@ -96,21 +96,4 @@ class WetterComService
         return md5($checkumString);
     }
 
-
-    public function request($url)
-    {
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-
-        $output = curl_exec($ch);
-        $responseInfo = curl_getinfo($ch);
-
-        curl_close($ch);
-
-        $response = array('requestInfo' => $responseInfo, 'content'  => $output);
-
-        return $response;
-    }
 }

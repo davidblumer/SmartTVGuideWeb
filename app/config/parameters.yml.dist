@@ -23,3 +23,8 @@ parameters:
     wetter_com_username: 7hack
     wetter_com_password: hacktheweather
     wetter_com_base_url: http://rwds2.wetter.com
+
+    airport_api_user_key: 084c86a55503a619769fd52435a439a3
+    airport_api_base_url: https://airport.api.aero
+
+    weg_de_apikey: 0a5vidZh

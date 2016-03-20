@@ -24,7 +24,7 @@ class WetterComController extends FOSRestController
      *  }
      * )
      */
-    public function indexAction(Request $request, $search)
+    public function weatherSearchAction(Request $request, $search)
     {
         $weatherService = $this->get('smarttvguide.service.wettercomservice');
 
@@ -39,4 +39,5 @@ class WetterComController extends FOSRestController
 
         return $response;
     }
+
 }
