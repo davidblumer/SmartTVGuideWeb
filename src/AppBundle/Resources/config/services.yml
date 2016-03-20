@@ -4,3 +4,9 @@ services:
         arguments:
             - '@doctrine.orm.entity_manager'
             - '@service_container'
+
+    smarttvguide.service.ericssonservice:
+        class: AppBundle\Service\EricssonComService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@service_container"
