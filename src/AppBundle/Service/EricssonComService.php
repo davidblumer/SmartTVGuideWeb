@@ -42,15 +42,16 @@ class EricssonComService
 
         $responseArray = json_decode($response, true);
 
+
         if(empty($responseArray)) {
             throw new Exception('Failed');
         }
 
         foreach($searchKeys as $searchKey) {
-            $output = array_merge($output, $this->getData($responseArray, $searchKey));
+            $output[$searchKey] = $this->getData($responseArray, $searchKey);
         }
 
-        return array_merge(array_unique($output), []);
+        return $output;
     }
 
     public function getData($inputArray, $type)
@@ -74,9 +75,13 @@ class EricssonComService
     {
         $return = [];
         foreach($contentType as $searchKey) {
-            foreach ($inputArray[0][$type] as $kek) {
-                if(key_exists($searchKey, $kek)) {
-                    array_push($return, $kek[$searchKey]['DE']['givenName'].' '.$kek[$searchKey]['DE']['lastName']);
+            if(isset($inputArray[0][$type]))
+            {
+                foreach ($inputArray[0][$type] as $kek) {
+                    if(key_exists($searchKey, $kek)) {
+                        $nameArray = ['givenName' => $kek[$searchKey]['DE']['givenName'], 'lastName'=> $kek[$searchKey]['DE']['lastName']];
+                        $return[] = $nameArray;
+                    }
                 }
             }
         }
@@ -86,17 +91,19 @@ class EricssonComService
     public function filterType($contentType, $inputArray, $type)
     {
         $return = [];
+
         foreach($contentType as $searchKey) {
             foreach ($inputArray[0][$type] as $key => $value) {
                 foreach ($value as $innerKey => $innerValue) {
                     if ($innerKey == 'type' && $innerValue == $searchKey) {
                         if (array_key_exists('DE', $value['value'])) {
-                            array_push($return, $value['value']['DE']);
+                            $return[$searchKey] = $value['value']['DE'];
                         }
                     }
                 }
             }
         }
+
         return $return;
     }
 
