@@ -4,7 +4,3 @@ parameters:
 #    parameter_name: value
 
 services:
-    get_set_method_normalizer:
-        class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
-        tags:
-            - { name: serializer.normalizer }

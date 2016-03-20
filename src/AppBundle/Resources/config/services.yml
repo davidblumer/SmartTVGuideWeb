@@ -10,3 +10,12 @@ services:
         arguments:
             - "@doctrine.orm.entity_manager"
             - "@service_container"
+
+    smarttvguide.service.wegdeservice:
+        class: AppBundle\Service\WegDeService
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@service_container'
+
+    smarttvguide.service.country:
+        class: AppBundle\Service\CountryCodeService
