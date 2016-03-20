@@ -1,0 +1,27 @@
+services:
+    smarttvguide.service.wettercomservice:
+        class: AppBundle\Service\WetterComService
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@service_container'
+
+    smarttvguide.service.ericssonservice:
+        class: AppBundle\Service\EricssonComService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@service_container"
+
+    smarttvguide.service.wegdeservice:
+        class: AppBundle\Service\WegDeService
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@service_container'
+
+    smarttvguide.service.country:
+        class: AppBundle\Service\CountryCodeService
+
+    smarttvguide.service.twitterservice:
+        class: AppBundle\Service\TwitterService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@service_container"

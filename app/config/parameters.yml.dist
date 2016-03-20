@@ -17,3 +17,19 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
+
+    ericsson_api_key: 240e4458fc4c6ac85c290481646b21ef
+    ericsson_api_url: http://hack.api.uat.ebmsctogroup.com/stores-active/contentInstance/event/filter
+    wetter_com_username: 7hack
+    wetter_com_password: hacktheweather
+    wetter_com_base_url: http://rwds2.wetter.com
+
+    airport_api_user_key: 084c86a55503a619769fd52435a439a3
+    airport_api_base_url: https://airport.api.aero
+
+    weg_de_apikey: 0a5vidZh
+
+    twitter_consumer_key: 2PA8v8O5ryUG996R7lonVbSqR
+    twitter_consumer_secret: RlxsV40zgLFxezJhKhheuDx5ipNKmg51RPkCYFyg75qLQTwAWv
+    twitter_access_token: 128516180-SoJUHuAkceMNoVLeRPhvNdV20G3xrsoaleBHHlnJ
+    twitter_access_token_secret: oAjrNyETz1xxo7exoNYY6MXTOPxsVeyw3bMn2xHs3SAjB
