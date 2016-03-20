@@ -21,6 +21,10 @@ class WegDeController extends FOSRestController
      *
      * @Rest\Get(path="/api/travels")
      *
+     * @ApiDoc(
+     *  section="Weg.de",
+     *  description="Returns data from weg.de",
+     * )
      */
     public function travelAction(Request $request)
     {
@@ -46,10 +50,9 @@ class WegDeController extends FOSRestController
      * @Rest\Post(path="/api/travel/match")
      *
      * @ApiDoc(
-     *  section="Wetter",
-     *  description="Returns weather data from weather.com by a string with name of city or postalcode",
+     *  section="Weg.de",
+     *  description="Returns data from weg.de by current position and a destination country",
      *  parameters={
-     *      {"name"="city", "dataType"="string", "required"=true, "description"="The name of city"},
      *      {"name"="country", "dataType"="string", "required"=true, "description"="The name of country"},
      *      {"name"="lat", "dataType"="string", "required"=true, "description"="Latitude of current position to get the nearest airport(s)"},
      *      {"name"="lon", "dataType"="string", "required"=true, "description"="Longitude of current position to get the nearest airport(s)"}

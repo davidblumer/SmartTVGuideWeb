@@ -16,10 +16,10 @@ class EricssonComController extends FOSRestController
      * @Rest\Get(path="/api/show/{search}")
      *
      * @ApiDoc(
-     *  section="Show",
+     *  section="Channel",
      *  description="Returns current show",
      *  parameters={
-     *      {"name"="search", "dataType"="string", "required"=true, "description"="A search term for the required city. (e.q.: postal code or name)"}
+     *      {"name"="search", "dataType"="string", "required"=true, "description"="A search term for the required channel"}
      *  }
      * )
      */
