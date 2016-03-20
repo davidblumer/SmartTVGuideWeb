@@ -12,7 +12,6 @@
         ]
     },
     "require": {
-        "ext-pcre": "*",
         "php": ">=5.3.9",
         "symfony/symfony": "2.8.*",
         "doctrine/orm": "^2.4.8",
@@ -30,8 +29,7 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
-        "symfony/phpunit-bridge": "~2.7",
-        "ext-pcre": "*"
+        "symfony/phpunit-bridge": "~2.7"
     },
     "scripts": {
         "post-install-cmd": [
@@ -54,7 +52,7 @@
     "config": {
         "bin-dir": "bin",
         "platform": {
-            "php": "5.5.3"
+            "php": "5.5.9"
         }
     },
     "repositories": {
