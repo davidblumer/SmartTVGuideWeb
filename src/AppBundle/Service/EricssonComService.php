@@ -4,8 +4,6 @@ namespace AppBundle\Service;
 
 use Doctrine\ORM\EntityManager;
 use phpDocumentor\Reflection\Exception;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 class EricssonComService
 {
@@ -24,16 +22,16 @@ class EricssonComService
     public function getCurrentProgram($show)
     {
         $output = [];
-        $searchKeys = ['searchableTitles', 'searchableTextItems'];
+        $searchKeys = ['searchableTitles', 'searchableTextItems', 'contributions'];
         $key = $this->container->getParameter('ericsson_api_key');
         $url = $this->container->getParameter('ericsson_api_url');
 
         $show = str_replace('_', '%20', $show);
 
-        $datetime = new \DateTime();
-        $hour = $datetime->format('H');
-        $startTime = $datetime->format('Y-m-d\T'.($hour-2).':i:s\Z');
-        $endTime = $datetime->format('Y-m-d\T'.($hour).':i:s\Z');
+        $startDatetime = new \DateTime('-2Hours');
+        $endDatetime = new \DateTime();
+        $startTime = $startDatetime->format('Y-m-d\TH:i:s\Z');
+        $endTime = $endDatetime->format('Y-m-d\TH:i:s\Z');
 
         $filters = 'filter={"criteria":[{"term":"publishedStartDateTime","operator":"atLeast","value":"'.$startTime.'"},{"term":"publishedStartDateTime","operator":"atMost","value":"'.$endTime.'"},{"term":"sourceName","operator":"in","values":["'.$show.'"]}],"operator":"and"}';
 
@@ -57,13 +55,37 @@ class EricssonComService
 
     public function getData($inputArray, $type)
     {
-        $return = [];
-        if($type == 'searchableTitles') {
-            $contentType = $this->translateTitleKeys();
+        if($type == 'contributions') {
+            $contentType = $this->getContKeys();
+            return $this->filterName($contentType, $inputArray, $type);
+        }
+        elseif($type == 'searchableTitles') {
+            $contentType = $this->getTitleKeys();
+            return $this->filterType($contentType, $inputArray, $type);
         }
         elseif($type == 'searchableTextItems') {
-            $contentType = $this->translateTextKeys();
+            $contentType = $this->getTextKeys();
+            return $this->filterType($contentType, $inputArray, $type);
         }
+
+    }
+
+    public function filterName($contentType, $inputArray, $type)
+    {
+        $return = [];
+        foreach($contentType as $searchKey) {
+            foreach ($inputArray[0][$type] as $kek) {
+                if(key_exists($searchKey, $kek)) {
+                    array_push($return, $kek[$searchKey]['DE']['givenName'].' '.$kek[$searchKey]['DE']['lastName']);
+                }
+            }
+        }
+        return $return;
+    }
+
+    public function filterType($contentType, $inputArray, $type)
+    {
+        $return = [];
         foreach($contentType as $searchKey) {
             foreach ($inputArray[0][$type] as $key => $value) {
                 foreach ($value as $innerKey => $innerValue) {
@@ -78,21 +100,32 @@ class EricssonComService
         return $return;
     }
 
-    public function translateTitleKeys()
+    public function getTitleKeys()
     {
         $translations = [
             'main',
             'episodeTitle',
             'seriesTitle'
         ];
+
         return $translations;
     }
 
-    public function translateTextKeys()
+    public function getTextKeys()
     {
         $translations = [
             'long'
         ];
+
+        return $translations;
+    }
+
+    public function getContKeys()
+    {
+        $translations = [
+            'contributorNames'
+        ];
+
         return $translations;
     }
 }
