@@ -1,0 +1,11 @@
+{
+  "PHP_EXTENSIONS": [
+    "simplexml",
+    "tokenizer",
+    "dom",
+    "json",
+    "pcre",
+    "reflection",
+    "spl"
+  ]
+}
