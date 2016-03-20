@@ -17,33 +17,29 @@ use Symfony\Component\Routing\RouterInterface;
 class WegDeController extends FOSRestController
 {
 
-//    /**
-//     *
-//     * @Rest\Get(path="/api/travel")
-//     *
-//     * @ApiDoc(
-//     *  section="Wetter",
-//     *  description="Returns weather data from weather.com by a string with name of city or postalcode",
-//     *  parameters={
-//     *      {"name"="search", "dataType"="string", "required"=true, "description"="A search term for the required city. (e.q.: postal code or name)"}
-//     *  }
-//     * )
-//     */
-//    public function travelAction(Request $request, $search)
-//    {
-//        $weatherService = $this->get('smarttvguide.service.wettercomservice');
-//
-//        $weather = $weatherService->getWeather($search);
-//
-//        $response = new Response('{}', 404, array('Content-Type' => 'application/json'));
-//
-//        if($weather)
-//        {
-//            $response = new Response(json_encode($weather), 200, array('Content-Type' => 'application/json'));
-//        }
-//
-//        return $response;
-//    }
+    /**
+     *
+     * @Rest\Get(path="/api/travels")
+     *
+     */
+    public function travelAction(Request $request)
+    {
+        $travelService = $this->get('smarttvguide.service.wegdeservice');
+
+        $params = $request->query->all();
+
+        $travels = $travelService->getTravels($params);
+
+        $response = new Response('{}', 404, array('Content-Type' => 'application/json'));
+
+        if($travels)
+        {
+            $response = new Response($travels->getContent(), 200, array('Content-Type' => 'application/json'));
+        }
+
+
+        return $response;
+    }
 
     /**
      *

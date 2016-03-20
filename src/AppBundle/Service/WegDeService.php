@@ -42,12 +42,14 @@ class WegDeService
 
     /**
      * @param array $params
+     * @return \Buzz\Message\MessageInterface
      */
-    public function getTravel(array $params = array())
+    public function getTravels(array $params = array())
     {
-        $buzz = $this->container->get('buzz');
-        $url = $this->getAirportBaseUrl();
-        $buzz->get($url);
+        $travelBaseUrl = $this->getTravelBaseUrl();
+        $travelUrl = $this->addParamsToUrl($travelBaseUrl, $params);
+        $response = $this->request($travelUrl);
+        return $response;
     }
 
     /**
@@ -77,16 +79,14 @@ class WegDeService
         }
 
         //Request packages for given location
-        $travelBaseUrl = $this->getTravelBaseUrl();
+
         $params = [
             'channel' => 'PACKAGE',
             'country' => $this->convertCountryName($country),
             'departureAirport' => $this->prepareAirportCodes($airportCodes),
             'apikey' => $this->wegDeApiKey];
 
-        $travelUrl = $this->addParamsToUrl($travelBaseUrl, $params);
-
-        $response = $this->request($travelUrl);
+        $response = $this->getTravels($params);
 
         return $response;
     }
