@@ -19,3 +19,9 @@ services:
 
     smarttvguide.service.country:
         class: AppBundle\Service\CountryCodeService
+
+    smarttvguide.service.twitterservice:
+        class: AppBundle\Service\TwitterService
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@service_container"

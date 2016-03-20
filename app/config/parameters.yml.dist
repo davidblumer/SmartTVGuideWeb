@@ -28,3 +28,8 @@ parameters:
     airport_api_base_url: https://airport.api.aero
 
     weg_de_apikey: 0a5vidZh
+
+    twitter_consumer_key: 2PA8v8O5ryUG996R7lonVbSqR
+    twitter_consumer_secret: RlxsV40zgLFxezJhKhheuDx5ipNKmg51RPkCYFyg75qLQTwAWv
+    twitter_access_token: 128516180-SoJUHuAkceMNoVLeRPhvNdV20G3xrsoaleBHHlnJ
+    twitter_access_token_secret: oAjrNyETz1xxo7exoNYY6MXTOPxsVeyw3bMn2xHs3SAjB

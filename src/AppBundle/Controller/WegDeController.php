@@ -12,7 +12,6 @@ use Symfony\Component\Routing\RouterInterface;
 /**
  * Class WegDeController
  * @package AppBundle\Controller
- * @author Felix Baeder <felix.baeder@socialbit.de>
  */
 class WegDeController extends FOSRestController
 {

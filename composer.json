@@ -24,7 +24,8 @@
         "friendsofsymfony/rest-bundle": "^1.7",
         "dunglas/api-bundle": "dev-bugfix/embedded",
         "nelmio/api-doc-bundle": "^2.11",
-        "sensio/buzz-bundle":"dev-master"
+        "sensio/buzz-bundle":"dev-master",
+        "endroid/twitter-bundle": "^1.1"
         
     },
     "require-dev": {

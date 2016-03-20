@@ -19,10 +19,15 @@ class EricssonComService
         $this->container = $container;
     }
 
-    public function getCurrentProgram($show)
+    public function getCurrentActors($show)
+    {
+
+        return $this->getCurrentProgram($show, $searchKey = ['contributions'])['contributions'];
+    }
+
+    public function getCurrentProgram($show, $searchKeys = ['searchableTitles', 'searchableTextItems', 'contributions'])
     {
         $output = [];
-        $searchKeys = ['searchableTitles', 'searchableTextItems', 'contributions'];
         $key = $this->container->getParameter('ericsson_api_key');
         $url = $this->container->getParameter('ericsson_api_url');
 
@@ -39,10 +44,9 @@ class EricssonComService
 
         $filters = 'filter={"criteria":[{"term":"publishedStartDateTime","operator":"atLeast","value":"'.$startTime.'"},{"term":"publishedStartDateTime","operator":"atMost","value":"'.$endTime.'"},{"term":"sourceName","operator":"in","values":["'.$show.'"]}],"operator":"and"}';
 
-        $ch = curl_init($url . '?numberOfResults=1&' . $filters . '&api_key=' . $key);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = curl_exec($ch);
-        curl_close($ch);
+        $buzz = $this->container->get('buzz');
+
+        $response = $buzz->get($url . '?numberOfResults=1&' . $filters . '&api_key=' . $key)->getContent();
 
         $responseArray = json_decode($response, true);
 
